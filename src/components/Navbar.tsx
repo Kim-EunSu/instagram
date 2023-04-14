@@ -1,3 +1,5 @@
+// src -> app -> components -> Navbar.tsx
+
 "use client";
 
 import Link from "next/link";
@@ -9,6 +11,8 @@ import { BsPlusSquareFill } from "react-icons/bs";
 import { RiSearchLine } from "react-icons/ri";
 import { RiSearchFill } from "react-icons/ri";
 import ColorButton from "./ui/ColorButton";
+
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const menu = [
   {
@@ -30,6 +34,8 @@ const menu = [
 
 export default function Header() {
   const pathname = usePathname();
+  const { data: session } = useSession();
+
   return (
     <div className="flex justify-between items-center p-4 border-b-2">
       <Link href="/" className="text-3xl font-bold">
@@ -44,7 +50,11 @@ export default function Header() {
               </Link>
             </li>
           ))}
-          <ColorButton text="Sign in" onClick={() => {}} />
+          {session ? (
+            <ColorButton text="Sign out" onClick={() => signOut()} />
+          ) : (
+            <ColorButton text="Sign in" onClick={() => signIn()} />
+          )}
         </ul>
       </nav>
     </div>
