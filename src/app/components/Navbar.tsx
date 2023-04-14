@@ -8,6 +8,7 @@ import { BsPlusSquare } from "react-icons/bs";
 import { BsPlusSquareFill } from "react-icons/bs";
 import { RiSearchLine } from "react-icons/ri";
 import { RiSearchFill } from "react-icons/ri";
+import ColorButton from "./ui/ColorButton";
 
 const menu = [
   {
@@ -30,26 +31,22 @@ const menu = [
 export default function Header() {
   const pathname = usePathname();
   return (
-    <header className="flex justify-between items-center p-4 border-b-2">
-      <Link href="/" className="text-5xl font-semibold">
+    <div className="flex justify-between items-center p-4 border-b-2">
+      <Link href="/" className="text-3xl font-bold">
         Instagram
       </Link>
-      <nav className="flex text-4xl items-center mr-12">
-        <ul className="flex">
+      <nav className="flex gap-4 items-center">
+        <ul className="flex items-center">
           {menu.map((item) => (
-            <li key={item.href} className="mr-4">
+            <li key={item.href} className="text-3xl mr-4">
               <Link href={item.href}>
                 {item.href === pathname ? item.clickedIcon : item.icon}
               </Link>
             </li>
           ))}
+          <ColorButton text="Sign in" onClick={() => {}} />
         </ul>
-
-        {/* <Link href="/" className="me-4"></Link>
-        <Link href="/search" className="me-4"></Link>
-        <Link href="/new" className="me-4"></Link>
-        <Link href="/sign">Sign in</Link> */}
       </nav>
-    </header>
+    </div>
   );
 }
