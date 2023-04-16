@@ -2,6 +2,7 @@ import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import Navbar from "../components/Navbar";
 import AuthContext from "@/context/AuthContext";
+import LoginPage from "./auth/signin/page";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
