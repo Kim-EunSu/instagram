@@ -1,7 +1,7 @@
 type Props = {
   text: string;
   onClick: () => void;
-  size: "small" | "big";
+  size?: "small" | "big";
 };
 
 // props로 전달하지 size를 명시하지않으면 기본적으로 small사이즈 설정
