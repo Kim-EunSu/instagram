@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import user from "../../../../sanity-studio/schemas/user";
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -14,15 +15,18 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({ session }) {
-      const user = session?.user;
+      const user = session.user;
+
       if (user) {
         session.user = {
           ...user,
           username: user.email?.split("@")[0] || "",
         };
       }
+
       return session;
     },
   },
 };
+
 export default NextAuth(authOptions);

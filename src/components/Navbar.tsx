@@ -10,9 +10,9 @@ import { BsPlusSquareFill } from "react-icons/bs";
 import { RiSearchLine } from "react-icons/ri";
 import { RiSearchFill } from "react-icons/ri";
 import ColorButton from "./ui/ColorButton";
-import Avatar from "./Avatar";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Avatar from "./Avatar";
 
 const menu = [
   {
@@ -52,11 +52,11 @@ export default function Header() {
             </li>
           ))}
           {user && (
-            <li>
-              <Link href={`/user/${user.username}`}>
+            <Link href={`/user/${user.username}`}>
+              <li>
                 <Avatar image={user.image} />
-              </Link>
-            </li>
+              </li>
+            </Link>
           )}
           <li>
             {session ? (
