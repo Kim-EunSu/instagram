@@ -1,6 +1,7 @@
 import { addUser } from "@/service/user";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -18,13 +19,12 @@ export const authOptions: NextAuthOptions = {
       if (!email) {
         return false;
       }
-
       addUser({
         id,
         name: name || "",
         image,
         email,
-        username: email.split("@")[0],
+        username: email.split("@")[0] || "",
       });
       return true;
     },
