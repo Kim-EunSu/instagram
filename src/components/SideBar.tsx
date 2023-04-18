@@ -5,16 +5,20 @@ type Props = {
   user: User;
 };
 
-export default function SideBar({
-  user: { name, username, email, image },
-}: Props) {
+export default function SideBar({ user: { name, username, image } }: Props) {
   return (
     <>
-      {image && <Avatar image={image} />}
-      <p>{name}</p>
-      <p>{username}</p>
-      <p>About • Help • API • Jobs • Privacy • Language</p>
-      <p>@Copyright Instagram</p>
+      <div className="flex items-center ">
+        {image && <Avatar image={image} />}
+        <div className="ml-4">
+          <p className="text-lg">{username}</p>
+          <p className="font-bold text-neutral-500 leading-4">{name}</p>
+        </div>
+      </div>
+      <p className="text-sm text-neutral-500 mt-8">
+        About • Help • API • Jobs • Privacy • Language
+      </p>
+      <p className="font-bold text-neutral-500 mt-8">@Copyright Instagram</p>
     </>
   );
 }

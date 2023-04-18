@@ -54,7 +54,7 @@ export default function Header() {
           {user && (
             <Link href={`/user/${user.username}`}>
               <li>
-                <Avatar image={user.image} />
+                <Avatar image={user.image} size="small" highlight />
               </li>
             </Link>
           )}
