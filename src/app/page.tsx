@@ -1,12 +1,13 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import FollowingBar from "@/components/FollowingBar";
 import PostList from "@/components/PostList";
 import SideBar from "@/components/SideBar";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { redirect } from "next/navigation";
 
-export default async function Home() {
+export default async function HomePage() {
   const session = await getServerSession(authOptions);
+
   const user = session?.user;
 
   if (!user) {
@@ -14,20 +15,10 @@ export default async function Home() {
   }
 
   return (
-    <>
-      {session ? (
-        <>
-          <div className="flex justify-between">
-            <section>
-              <FollowingBar />
-              <PostList />
-            </section>
-            <section>
-              <SideBar user={user} />
-            </section>
-          </div>
-        </>
-      ) : null}
-    </>
+    <section>
+      <FollowingBar />
+      <PostList />
+      <SideBar user={user} />
+    </section>
   );
 }

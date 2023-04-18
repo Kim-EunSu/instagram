@@ -1,5 +1,3 @@
-//
-
 import { User } from "@/model/user";
 import Avatar from "./Avatar";
 
@@ -13,8 +11,10 @@ export default function SideBar({
   return (
     <>
       {image && <Avatar image={image} />}
-      <p>{username}</p>
       <p>{name}</p>
+      <p>{username}</p>
+      <p>About • Help • API • Jobs • Privacy • Language</p>
+      <p>@Copyright Instagram</p>
     </>
   );
 }
