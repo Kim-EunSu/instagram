@@ -2,7 +2,9 @@ import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import Navbar from "../components/Navbar";
 import AuthContext from "@/context/AuthContext";
-import LoginPage from "./auth/signin/page";
+import SideBar from "@/components/SideBar";
+import FollowingBar from "@/components/FollowingBar";
+import PostList from "@/components/PostList";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 

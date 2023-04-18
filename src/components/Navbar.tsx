@@ -60,7 +60,9 @@ export default function Header() {
           )}
           <li>
             {session ? (
-              <ColorButton text="Sign out" onClick={() => signOut()} />
+              <>
+                <ColorButton text="Sign out" onClick={() => signOut()} />
+              </>
             ) : (
               <ColorButton text="Sign in" onClick={() => signIn()} />
             )}
