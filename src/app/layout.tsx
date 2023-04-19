@@ -2,9 +2,7 @@ import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import Navbar from "../components/Navbar";
 import AuthContext from "@/context/AuthContext";
-import SideBar from "@/components/SideBar";
-import FollowingBar from "@/components/FollowingBar";
-import PostList from "@/components/PostList";
+import SWRConfigContext from "@/context/SWRConfingContext";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
@@ -25,7 +23,9 @@ export default function RootLayout({
           <header className="sticky top-0 bg-white border-b">
             <Navbar />
           </header>
-          <main>{children}</main>
+          <main>
+            <SWRConfigContext>{children}</SWRConfigContext>
+          </main>
         </AuthContext>
       </body>
     </html>
