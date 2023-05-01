@@ -1,10 +1,12 @@
 "use client";
 
+import { DetailUser } from "@/model/user";
 import useSWR from "swr";
 
 export default function FollowingBar() {
-  const { data, error, isLoading } = useSWR("/api/me");
-  console.log(data);
+  const { data, error, isLoading: loading } = useSWR<DetailUser>("/api/me");
 
-  return <div>FollowingBar</div>;
+  const users = data?.following;
+
+  return <section>{loading ? <></> : <></>}</section>;
 }
