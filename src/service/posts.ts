@@ -1,4 +1,5 @@
 import { client } from "./sanity";
+import { urlFor } from "../service/sanity";
 
 // post.author.username -> post.username 이렇게 쓰고자 아래와 같이
 const simplePostProjection = `
@@ -13,11 +14,15 @@ const simplePostProjection = `
     "createdAt":_createdAt
 `;
 export async function getFollowingPostsOf(username: string) {
-  return client.fetch(
-    `*[_type =="post" && author->username == "${username}"
+  return client
+    .fetch(
+      `*[_type =="post" && author->username == "${username}"
         || author._ref in *[_type == "user" && username == "${username}"].following[]._ref]
         | order(_createdAt desc){
         ${simplePostProjection}
       }`
-  );
+    )
+    .then((posts) =>
+      posts.map((post) => ({ ...post, image: urlFor(post.image) }))
+    );
 }
