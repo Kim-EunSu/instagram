@@ -2,13 +2,12 @@ import React from "react";
 import Avatar from "./Avatar";
 import Image from "next/image";
 import { SimplePost } from "@/model/post";
-import HeartIcon from "./ui/icons/HeartIcon";
-import BookmarkIcon from "./ui/icons/BookmarkIcon";
-import SmileIcon from "./ui/icons/SmileIcon";
-import { parseDate } from "@/util/date";
+import CommentForm from "./CommentForm";
+import ActionBar from "./ActionBar";
 
 type Props = {
   post: SimplePost;
+  priority?: boolean;
 };
 
 // SimplePost =>
@@ -21,7 +20,8 @@ type Props = {
 // likes: string[];
 // comments: Comment[];
 
-function PostListCard({ post }: Props) {
+//priority를 지정 안해주면 기본적으로 false
+function PostListCard({ post, priority = false }: Props) {
   //구조분해할당
   const { username, userImage, image, text, createdAt, likes } = post;
   return (
@@ -36,32 +36,15 @@ function PostListCard({ post }: Props) {
         alt={`photo by ${username}`}
         width={500}
         height={500}
+        priority={priority}
       />
-      <div className="flex justify-between my-2 px-4">
-        <HeartIcon />
-        <BookmarkIcon />
-      </div>
-      <div className="px-4 py-1">
-        <p className="text-sm font-bold mb-2">{`${likes?.length ?? 0} ${
-          likes?.length > 1 ? "likes" : "like"
-        }`}</p>
-        <p>
-          <span className="font-bold mr-1">{username}</span>
-          {text}
-        </p>
-        <p className="text-xs text-neutral-500 uppercase my-2">
-          {parseDate(createdAt)}
-        </p>
-        <form className="flex items-center border-t border-neutral-300 ">
-          <SmileIcon />
-          <input
-            className="w-full ml-2 border-none outline-none p-3"
-            type="text"
-            placeholder="Add a comment..."
-          />
-          <button className="font-bold text-sky-500 ml-2">Post</button>
-        </form>
-      </div>
+      <ActionBar
+        likes={likes}
+        username={username}
+        createdAt={createdAt}
+        text={text}
+      />
+      <CommentForm />
     </article>
   );
 }
