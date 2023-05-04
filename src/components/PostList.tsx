@@ -12,7 +12,7 @@ export default function PostList() {
     <section>
       {loading && (
         <div className="text-center mt-32">
-          <GridSpinner color="red" />
+          <GridSpinner color="green" />
         </div>
       )}
 
